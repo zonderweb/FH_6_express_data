@@ -1,0 +1,33 @@
+# Dependencies
+**/node_modules/
+
+# Build outputs
+**/dist/
+**/dist-ssr/
+**/coverage/
+**/.vite/
+
+# Environment files
+**/.env
+**/.env.*
+!**/.env.example
+
+# Local secrets / generated credentials
+**/credentials.json
+
+# Logs
+**/logs/
+**/*.log
+**/*-debug.log*
+**/*.local
+
+# Editor / OS files
+**/.idea/
+**/.vscode/*
+!**/.vscode/extensions.json
+**/.DS_Store
+**/*.suo
+**/*.ntvs*
+**/*.njsproj
+**/*.sln
+**/*.sw?
