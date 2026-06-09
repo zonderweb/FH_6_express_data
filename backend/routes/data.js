@@ -14,10 +14,14 @@ router.get('/', async function (req, res, next) {
 
     const rows = result.data.values;
     const headers = rows[0];
-    const data = rows.slice(1);
+    const data = rows.slice(1).map((row) => {
+      return headers.reduce((obj, header, index) => {
+        obj[header] = row[index] || '';
+        return obj;
+      }, {});
+    });
 
     res.json({
-      headers,
       data,
     });
   } catch (e) {
