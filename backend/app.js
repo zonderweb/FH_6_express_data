@@ -1,41 +1,26 @@
 const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
 const { google } = require('googleapis');
 const cors = require('cors');
 require('dotenv').config();
 
+const indexRouter = require('./routes/index');
+const usersRouter = require('./routes/users');
+const dataRouter = require('./routes/data');
+
 const app = express();
 
-const auth = new google.auth.GoogleAuth({
-  keyFile: './credentials.json',
-  scopes: ['https://www.googleapis.com/auth/spreadsheets'],
-});
+app.use(logger('dev'));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(cors({ origin: 'http://localhost:5173' }));
 
-const sheets = google.sheets({ version: 'v4', auth });
+app.use('/', indexRouter);
+app.use('/users', usersRouter);
+app.use('/data', dataRouter);
 
-app.use(
-  cors({
-    origin: 'http://localhost:5173',
-  })
-);
-
-app.get('/data', async (req, res) => {
-  try {
-    const result = await sheets.spreadsheets.values.get({
-      spreadsheetId: process.env.SPREADSHEET_ID,
-      range: 'FH_Drift_cars_data!A:Y',
-    });
-
-    const rows = result.data.values;
-    const headers = rows[0];
-    const data = rows.slice(1);
-
-    res.json({
-      headers,
-      data,
-    });
-  } catch (e) {
-    res.status(500).json({ error: e.message });
-  }
-});
-
-app.listen(3000, () => console.log('Serve!'));
+module.exports = app;

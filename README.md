@@ -8,7 +8,7 @@
 - **Frontend** — React + Vite
 - **Джерело даних** — Google Sheets API
 
-Backend читає дані з таблиці Google Sheets і віддає їх через `/data`, а frontend показує їх у таблиці.
+Backend читає дані з Google Sheets і віддає їх через `GET /data`, а frontend показує їх у таблиці.
 
 ## Структура проєкту
 
@@ -22,9 +22,9 @@ frontend/  React-інтерфейс
 - Node.js
 - npm
 - доступ до Google Sheets API
-- файл `credentials.json` у папці `backend/`
+- файл `backend/credentials.json` із service account
 
-## Налаштування backend
+## Налаштування
 
 Створи файл `backend/.env`:
 
@@ -41,7 +41,7 @@ SPREADSHEET_ID=your_spreadsheet_id
 ```bash
 cd backend
 npm install
-node app.js
+npm start
 ```
 
 Backend працює на `http://localhost:3000`.
@@ -74,3 +74,4 @@ Frontend працює на `http://localhost:5173`.
 1. Backend читає діапазон `FH_Drift_cars_data!A:Y` із Google Sheets.
 2. Перший рядок використовується як заголовки таблиці.
 3. Усі наступні рядки відображаються у frontend.
+4. Frontend звертається напряму до `http://localhost:3000/data`.
