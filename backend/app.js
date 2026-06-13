@@ -10,6 +10,7 @@ const usersRouter = require('./routes/users');
 const dataRouter = require('./routes/data');
 
 const app = express();
+const manufacturersRoutes = require('./routes/manufacturers.routes');
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -21,5 +22,6 @@ app.use(cors({ origin: 'http://localhost:5173' }));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/data', dataRouter);
+app.use('/api/manufacturers', manufacturersRoutes);
 
 module.exports = app;
