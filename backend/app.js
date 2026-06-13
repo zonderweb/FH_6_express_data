@@ -2,7 +2,6 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-const { google } = require('googleapis');
 const cors = require('cors');
 require('dotenv').config();
 
