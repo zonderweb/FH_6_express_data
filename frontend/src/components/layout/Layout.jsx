@@ -1,12 +1,15 @@
 import Container from 'react-bootstrap/Container';
+import { Outlet } from 'react-router-dom';
 import MainNavbar from './MainNavbar';
 
-function Layout({ children }) {
+function Layout() {
   return (
     <>
       <MainNavbar />
 
-      <Container className="mt-4">{children}</Container>
+      <Container className="mt-4">
+        <Outlet />
+      </Container>
     </>
   );
 }

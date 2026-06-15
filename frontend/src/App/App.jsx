@@ -1,14 +1,19 @@
+import Container from 'react-bootstrap/Container';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Layout from '../components/layout/Layout';
 import DataDriftTable from '../DataDriftTable/DataDriftTable';
 import ManufacturersPage from '../pages/ManufacturersPage';
 import './App.scss';
-import Container from 'react-bootstrap/Container';
-import Layout from '../components/layout/Layout';
 
 function App() {
   return (
-    <>
-      <ManufacturersPage />
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route element={<Layout />}>
+          <Route path="/manufacturers" element={<ManufacturersPage />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
