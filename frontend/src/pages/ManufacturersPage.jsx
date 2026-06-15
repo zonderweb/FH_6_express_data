@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import Card from 'react-bootstrap/Card';
 import ManufacturerForm from '../components/manufacturers/ManufacturerForm';
+import ManufacturerTable from '../components/manufacturers/ManufacturerTable';
 import {
   createManufacturer,
   deleteManufacturer,
@@ -57,7 +58,8 @@ export default function ManufacturersPage() {
   return (
     <Card>
       <Card.Body>
-        <h2>Виробники авто</h2>
+        <h2 className='mb-4'>Виробники авто</h2>
+
         <ManufacturerForm
           name={name}
           editing={editing}
@@ -69,29 +71,11 @@ export default function ManufacturersPage() {
           }}
         />
 
-        <table>
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Назва</th>
-              <th>Дії</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            {manufacturers.map((manufacturer) => (
-              <tr key={manufacturer.id}>
-                <td>{manufacturer.id}</td>
-                <td>{manufacturer.name}</td>
-                <td>
-                  <button onClick={() => handleEdit(manufacturer)}>Редагувати</button>
-
-                  <button onClick={() => handleDelete(manufacturer.id)}>Видалити</button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        <ManufacturerTable
+          manufacturers={manufacturers}
+          onEdit={handleEdit}
+          onDelete={handleDelete}
+        />
       </Card.Body>
     </Card>
   );

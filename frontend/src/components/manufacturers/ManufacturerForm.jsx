@@ -9,7 +9,7 @@ function ManufacturerForm({ name, editing, onNameChange, onSubmit, onCancel }) {
     <Form onSubmit={onSubmit}>
       <Form.Group className='mb-3'>
         <Row>
-          <Col md={6}>
+          <Col lg={8} md={6} className='pe-2'>
             <Form.Control
               type='text'
               value={name}
@@ -18,8 +18,8 @@ function ManufacturerForm({ name, editing, onNameChange, onSubmit, onCancel }) {
               className='mb-3'
             />
           </Col>
-          <Col md={6}>
-            <Button variant='primary' type='submit' className='me-2 fw-medium'>
+          <Col lg={4} md={6}>
+            <Button variant='primary' type='submit' className='me-3 fw-medium'>
               <Plus className='me-2' size={18} />
               {editing ? 'Оновити' : 'Додати'}
             </Button>
