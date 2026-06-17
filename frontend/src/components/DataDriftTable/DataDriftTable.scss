@@ -5,10 +5,16 @@
 table {
   border-collapse: collapse;
   min-width: max-content;
-  background: #f5f5f5;
+  background: #fff;
 }
 
 table.data-table {
+
+  thead {
+    tr {
+      background-color: #efeefd;
+    }
+  }
 
   th,
   td {
@@ -25,5 +31,14 @@ table.data-table {
     min-width: 200px;
     text-align-last: left;
     padding-left: 15px;
+    background-color: #eefcfd;
+  }
+
+  td:first-child {
+    font-weight: 550;
+  }
+
+  th:first-child {
+    background-color: #dad8f9;
   }
 }

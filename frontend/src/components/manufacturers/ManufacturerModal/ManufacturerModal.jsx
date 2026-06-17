@@ -1,5 +1,5 @@
 import './ManufacturerModal.scss';
-import { X } from 'lucide-react';
+import { Trash2, X } from 'lucide-react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
@@ -19,6 +19,7 @@ function ManufacturerModal({ show, title, message, onConfirm, onClose }) {
         </Button>
 
         <Button size='sm' variant='danger' onClick={onConfirm}>
+          <Trash2 size={18} className='me-2' />
           Видалити
         </Button>
       </Modal.Footer>

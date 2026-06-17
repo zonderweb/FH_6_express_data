@@ -1,7 +1,7 @@
 import Container from 'react-bootstrap/Container';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import DataDriftTable from '../components/DataDriftTable/DataDriftTable';
 import Layout from '../components/layout/Layout';
-import DataDriftTable from '../DataDriftTable/DataDriftTable';
 import ManufacturersPage from '../pages/ManufacturersPage';
 import './App.scss';
 
