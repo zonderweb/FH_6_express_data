@@ -1,38 +1,69 @@
 # FH 6 Express Data
 
-Веб-застосунок для перегляду даних з Google Sheets у вигляді таблиці.
+Веб-застосунок для перегляду даних із Google Sheets та керування списком виробників авто.
 
 ## Що всередині
 
-- **Backend** — Node.js + Express
-- **Frontend** — React + Vite
-- **Джерело даних** — Google Sheets API
-
-Backend читає дані з Google Sheets і віддає їх через `GET /data`, а frontend показує їх у таблиці.
+- **Backend** — Node.js + Express + MySQL
+- **Frontend** — React + Vite + React Router + React Bootstrap
+- **Дані для таблиці** — Google Sheets API
 
 ## Структура проєкту
 
 ```text
-backend/   Express API + інтеграція з Google Sheets
-frontend/  React-інтерфейс
+backend/
+  app.js
+  bin/www
+  controllers/
+    manufacturers.controller.js
+  db/
+    connection.js
+  middlewares/
+    auth.js
+  routes/
+    data.js
+    index.js
+    manufacturers.routes.js
+    users.js
+  public/
+frontend/
+  src/
+    App/
+    DataDriftTable/
+    assets/
+    components/
+      common/
+      layout/
+      manufacturers/
+        ManufacturerForm/
+        ManufacturerModal/
+        ManufacturerTable/
+    pages/
+    services/
+    scss/
 ```
 
 ## Вимоги
 
 - Node.js
 - npm
+- MySQL
 - доступ до Google Sheets API
-- файл `backend/credentials.json` із service account
+- файл `backend/credentials.json`
 
 ## Налаштування
 
-Створи файл `backend/.env`:
+Скопіюй `backend/.env.example` у `backend/.env` і заповни значення:
 
 ```env
 SPREADSHEET_ID=your_spreadsheet_id
+DB_HOST=localhost
+DB_USER=db_user
+DB_PASSWORD=db_password
+DB_NAME=db_name
 ```
 
-Також переконайся, що в `backend/` є `credentials.json` із доступом до Google service account.
+Також переконайся, що в `backend/credentials.json` є доступ до Google service account.
 
 ## Запуск локально
 
@@ -56,22 +87,25 @@ npm run dev
 
 Frontend працює на `http://localhost:5173`.
 
-## API
+## Маршрути
 
-### `GET /data`
+### Frontend
 
-Повертає:
+- `/` — таблиця з даними
+- `/manufacturers` — CRUD для виробників
 
-```json
-{
-  "headers": ["..."],
-  "data": [["..."], ["..."]]
-}
-```
+### Backend
+
+- `GET /data` — повертає `{ data }` з даними з Google Sheets
+- `GET /api/manufacturers`
+- `GET /api/manufacturers/:id`
+- `POST /api/manufacturers`
+- `PUT /api/manufacturers/:id`
+- `DELETE /api/manufacturers/:id`
 
 ## Як це працює
 
 1. Backend читає діапазон `FH_Drift_cars_data!A:Y` із Google Sheets.
-2. Перший рядок використовується як заголовки таблиці.
-3. Усі наступні рядки відображаються у frontend.
-4. Frontend звертається напряму до `http://localhost:3000/data`.
+2. Дані з `GET /data` повертаються як масив об'єктів.
+3. Frontend показує таблицю на головній сторінці.
+4. Окремий розділ `/manufacturers` працює з таблицею `manufacturers` у MySQL.

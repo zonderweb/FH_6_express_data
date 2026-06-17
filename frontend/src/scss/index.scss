@@ -1,10 +1,17 @@
-@use "bootstrap/scss/bootstrap";
+@import "bootstrap/scss/functions";
+@import "./variables"; // custom gen colors theme // Flatly https://bootstrap.build/
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/maps";
+@import "bootstrap/scss/mixins";
+@import "bootstrap/scss/utilities";
+@import "bootstrap/scss/bootstrap";
 
 body {
   margin: 0;
-  background-color: #f2f2f2;
+  background-color: #f2f2f2 !important;
   font-family: 'Inter Tight', sans-serif;
   font-weight: 450;
+  color: #363133;
 }
 
 h1,
@@ -14,4 +21,13 @@ h4,
 h5,
 h6 {
   font-family: 'Roboto Slab', Roboto, sans-serif;
+  color: #363133 !important;
+}
+
+table {
+
+  th,
+  td {
+    color: #363133 !important;
+  }
 }

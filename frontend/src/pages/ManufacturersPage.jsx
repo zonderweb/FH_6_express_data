@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import Card from 'react-bootstrap/Card';
-import ManufacturerForm from '../components/manufacturers/ManufacturerForm';
-import ManufacturerTable from '../components/manufacturers/ManufacturerTable';
+import ManufacturerForm from '../components/manufacturers/ManufacturerForm/ManufacturerForm';
+import ManufacturerModal from '../components/manufacturers/ManufacturerModal/ManufacturerModal';
+import ManufacturerTable from '../components/manufacturers/ManufacturerTable/ManufacturerTable';
 import {
   createManufacturer,
   deleteManufacturer,
@@ -13,6 +14,26 @@ export default function ManufacturersPage() {
   const [manufacturers, setManufacturers] = useState([]);
   const [name, setName] = useState('');
   const [editing, setEditing] = useState(null);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [manufacturerToDelete, setManufacturerToDelete] = useState(null);
+
+  const handleDelete = (manufacturer) => {
+    setManufacturerToDelete(manufacturer);
+    setShowDeleteModal(true);
+  };
+
+  const confirmDelete = async () => {
+    if (!manufacturerToDelete) {
+      return;
+    }
+
+    await deleteManufacturer(manufacturerToDelete.id);
+
+    setShowDeleteModal(false);
+    setManufacturerToDelete(null);
+
+    loadManufacturers();
+  };
 
   const loadManufacturers = async () => {
     const response = await getManufacturers();
@@ -46,14 +67,14 @@ export default function ManufacturersPage() {
     setName(manufacturer.name);
   };
 
-  const handleDelete = async (id) => {
-    if (!window.confirm('Видалити виробника?')) {
-      return;
-    }
+  // const handleDelete = async (id) => {
+  //   if (!window.confirm('Видалити виробника?')) {
+  //     return;
+  //   }
 
-    await deleteManufacturer(id);
-    loadManufacturers();
-  };
+  //   await deleteManufacturer(id);
+  //   loadManufacturers();
+  // };
 
   return (
     <Card>
@@ -75,6 +96,17 @@ export default function ManufacturersPage() {
           manufacturers={manufacturers}
           onEdit={handleEdit}
           onDelete={handleDelete}
+        />
+
+        <ManufacturerModal
+          show={showDeleteModal}
+          title='Видалення виробника'
+          message={manufacturerToDelete ? `Видалити виробника "${manufacturerToDelete.name}"?` : ''}
+          onConfirm={confirmDelete}
+          onClose={() => {
+            setShowDeleteModal(false);
+            setManufacturerToDelete(null);
+          }}
         />
       </Card.Body>
     </Card>

@@ -3,13 +3,14 @@ import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
+import './ManufacturerForm.scss';
 
 function ManufacturerForm({ name, editing, onNameChange, onSubmit, onCancel }) {
   return (
     <Form onSubmit={onSubmit}>
       <Form.Group className='mb-3'>
         <Row>
-          <Col lg={8} md={6} className='pe-2'>
+          <Col lg={6} md={6} className='pe-2'>
             <Form.Control
               type='text'
               value={name}
@@ -18,7 +19,7 @@ function ManufacturerForm({ name, editing, onNameChange, onSubmit, onCancel }) {
               className='mb-3'
             />
           </Col>
-          <Col lg={4} md={6}>
+          <Col lg={6} md={6}>
             <Button variant='primary' type='submit' className='me-3 fw-medium'>
               <Plus className='me-2' size={18} />
               {editing ? 'Оновити' : 'Додати'}

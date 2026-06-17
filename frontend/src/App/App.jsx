@@ -10,7 +10,10 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route element={<Layout />}>
-          <Route path="/manufacturers" element={<ManufacturersPage />} />
+          <Route path='/' element={<DataDriftTable />} />
+        </Route>
+        <Route element={<Layout />}>
+          <Route path='/manufacturers' element={<ManufacturersPage />} />
         </Route>
       </Routes>
     </BrowserRouter>

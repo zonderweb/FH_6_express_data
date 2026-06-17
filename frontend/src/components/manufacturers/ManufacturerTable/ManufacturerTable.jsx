@@ -1,12 +1,13 @@
 import { SquarePen, Trash2 } from 'lucide-react';
 import Button from 'react-bootstrap/Button';
 import Table from 'react-bootstrap/Table';
+import './ManufacturerTable.scss';
 
 function ManufacturerTable({ manufacturers, onEdit, onDelete }) {
   return (
-    <Table hover className='align-middle'>
+    <Table hover bordered className='align-middle manufacturer-table'>
       <thead>
-        <tr>
+        <tr className='table-active'>
           <th>ID</th>
           <th>Name</th>
           <th>Actions</th>
@@ -29,7 +30,7 @@ function ManufacturerTable({ manufacturers, onEdit, onDelete }) {
                 Редагувати
               </Button>
 
-              <Button variant='danger' size='sm' onClick={() => onDelete(manufacturer.id)}>
+              <Button variant='danger' size='sm' onClick={() => onDelete(manufacturer)}>
                 <Trash2 size={18} />
               </Button>
             </td>
