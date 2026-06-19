@@ -11,6 +11,7 @@ const dataRouter = require('./routes/data');
 
 const app = express();
 const manufacturersRoutes = require('./routes/manufacturers.routes');
+const carsRoutes = require('./routes/cars.routes');
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -23,5 +24,6 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/data', dataRouter);
 app.use('/api/manufacturers', manufacturersRoutes);
+app.use('/api/cars', carsRoutes);
 
 module.exports = app;

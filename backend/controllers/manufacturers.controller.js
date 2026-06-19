@@ -1,5 +1,4 @@
 const db = require('../db/connection');
-const e = require('express');
 
 // GET All
 exports.getAll = async (req, res) => {
