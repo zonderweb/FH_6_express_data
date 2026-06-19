@@ -1,14 +1,15 @@
 import { useEffect, useState } from 'react';
 import Card from 'react-bootstrap/Card';
-import ManufacturerForm from '../components/manufacturers/ManufacturerForm/ManufacturerForm';
-import ManufacturerModal from '../components/manufacturers/ManufacturerModal/ManufacturerModal';
-import ManufacturerTable from '../components/manufacturers/ManufacturerTable/ManufacturerTable';
+import ManufacturerForm from '../../components/manufacturers/ManufacturerForm/ManufacturerForm';
+import ManufacturerModal from '../../components/manufacturers/ManufacturerModal/ManufacturerModal';
+import ManufacturerTable from '../../components/manufacturers/ManufacturerTable/ManufacturerTable';
 import {
   createManufacturer,
   deleteManufacturer,
   getManufacturers,
   updateManufacturer,
-} from '../services/manufacturersApi';
+} from '../../services/manufacturersApi';
+import './ManufacturersPage.scss';
 
 export default function ManufacturersPage() {
   const [manufacturers, setManufacturers] = useState([]);
@@ -66,15 +67,6 @@ export default function ManufacturersPage() {
     setEditing(manufacturer);
     setName(manufacturer.name);
   };
-
-  // const handleDelete = async (id) => {
-  //   if (!window.confirm('Видалити виробника?')) {
-  //     return;
-  //   }
-
-  //   await deleteManufacturer(id);
-  //   loadManufacturers();
-  // };
 
   return (
     <Card>
