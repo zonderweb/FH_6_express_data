@@ -1,4 +1,4 @@
-import { SquarePen, Trash2 } from 'lucide-react';
+import { DatabaseZap, SquarePen } from 'lucide-react';
 import Button from 'react-bootstrap/Button';
 import Table from 'react-bootstrap/Table';
 import './ManufacturerTable.scss';
@@ -30,8 +30,13 @@ function ManufacturerTable({ manufacturers, onEdit, onDelete }) {
                 Редагувати
               </Button>
 
-              <Button variant='danger' size='sm' onClick={() => onDelete(manufacturer)}>
-                <Trash2 size={18} />
+              <Button
+                variant='danger'
+                size='sm'
+                title='Видалити'
+                onClick={() => onDelete(manufacturer)}
+              >
+                <DatabaseZap size={18} />
               </Button>
             </td>
           </tr>

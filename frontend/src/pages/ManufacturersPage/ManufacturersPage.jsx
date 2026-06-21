@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import Card from 'react-bootstrap/Card';
+import ConfirmModal from '../../components/common/ConfirmModal/ConfirmModal';
 import ManufacturerForm from '../../components/manufacturers/ManufacturerForm/ManufacturerForm';
-import ManufacturerModal from '../../components/manufacturers/ManufacturerModal/ManufacturerModal';
 import ManufacturerTable from '../../components/manufacturers/ManufacturerTable/ManufacturerTable';
 import {
   createManufacturer,
@@ -69,38 +69,41 @@ export default function ManufacturersPage() {
   };
 
   return (
-    <Card>
-      <Card.Body>
-        <h2 className='mb-4'>Виробники авто</h2>
+    <>
+      <h1 className='mb-4 h2 ms-2'>Виробники авто</h1>
+      <Card>
+        <Card.Body>
+          <ManufacturerForm
+            name={name}
+            editing={editing}
+            onNameChange={setName}
+            onSubmit={handleSubmit}
+            onCancel={() => {
+              setEditing(null);
+              setName('');
+            }}
+          />
 
-        <ManufacturerForm
-          name={name}
-          editing={editing}
-          onNameChange={setName}
-          onSubmit={handleSubmit}
-          onCancel={() => {
-            setEditing(null);
-            setName('');
-          }}
-        />
+          <ManufacturerTable
+            manufacturers={manufacturers}
+            onEdit={handleEdit}
+            onDelete={handleDelete}
+          />
 
-        <ManufacturerTable
-          manufacturers={manufacturers}
-          onEdit={handleEdit}
-          onDelete={handleDelete}
-        />
-
-        <ManufacturerModal
-          show={showDeleteModal}
-          title='Видалення виробника'
-          message={manufacturerToDelete ? `Видалити виробника "${manufacturerToDelete.name}"?` : ''}
-          onConfirm={confirmDelete}
-          onClose={() => {
-            setShowDeleteModal(false);
-            setManufacturerToDelete(null);
-          }}
-        />
-      </Card.Body>
-    </Card>
+          <ConfirmModal
+            show={showDeleteModal}
+            title='Видалення виробника'
+            message={
+              manufacturerToDelete ? `Видалити виробника "${manufacturerToDelete.name}"?` : ''
+            }
+            onConfirm={confirmDelete}
+            onClose={() => {
+              setShowDeleteModal(false);
+              setManufacturerToDelete(null);
+            }}
+          />
+        </Card.Body>
+      </Card>
+    </>
   );
 }

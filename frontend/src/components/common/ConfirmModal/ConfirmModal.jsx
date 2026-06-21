@@ -1,9 +1,9 @@
-import './ManufacturerModal.scss';
-import { Trash2, X } from 'lucide-react';
+import './ConfirmModal.scss';
+import { DatabaseZap, X } from 'lucide-react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
-function ManufacturerModal({ show, title, message, onConfirm, onClose }) {
+function ConfirmModal({ show, title, message, onConfirm, onClose }) {
   return (
     <Modal show={show} onHide={onClose} centered>
       <Modal.Header closeButton>
@@ -19,7 +19,7 @@ function ManufacturerModal({ show, title, message, onConfirm, onClose }) {
         </Button>
 
         <Button size='sm' variant='danger' onClick={onConfirm}>
-          <Trash2 size={18} className='me-2' />
+          <DatabaseZap size={18} className='me-2' />
           Видалити
         </Button>
       </Modal.Footer>
@@ -27,4 +27,4 @@ function ManufacturerModal({ show, title, message, onConfirm, onClose }) {
   );
 }
 
-export default ManufacturerModal;
+export default ConfirmModal;
