@@ -1,15 +1,13 @@
-import { DatabaseZap, Plus, SquarePen } from 'lucide-react';
+import { Plus } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
-import Modal from 'react-bootstrap/Modal';
+import Card from 'react-bootstrap/Card';
 import ConfirmModal from '../../components/common/ConfirmModal/ConfirmModal';
 import CarFormModal from '../../components/сars/CarFormModal/CarFormModal';
 import CarsTable from '../../components/сars/CarsTable/CarsTable';
-import './CarsPage.scss';
-
 import { createCar, deleteCar, getCars, updateCar } from '../../services/carsApi';
 import { getManufacturers } from '../../services/manufacturersApi';
+import './CarsPage.scss';
 
 function CarsPage() {
   const [cars, setCars] = useState([]);
@@ -118,120 +116,24 @@ function CarsPage() {
 
   return (
     <>
-      <h1 className='mb-4 h2'>Page of Cars</h1>
-      <Button onClick={() => setShow(true)}>
-        <Plus className='me-2' />
-        Add Car
-      </Button>
+      <h1 className='mb-4 h2'>Page of Drift Cars</h1>
+      <Card>
+        <Card.Body>
+          <Button onClick={() => setShow(true)}>
+            <Plus className='me-2' />
+            Add Car
+          </Button>
 
-      <CarsTable
-        cars={cars}
-        onEdit={handleEdit}
-        onDelete={(car) => {
-          setCarToDelete(car);
-          setShowDeleteModal(true);
-        }}
-      />
-
-      {/* # 4. Modal форма додавання */}
-      {/* <Modal show={show} onHide={() => setShow(false)} centered>
-        <Modal.Header closeButton>
-          <Modal.Title>{editingCar ? 'Edit Car' : 'Add Car'}</Modal.Title>
-        </Modal.Header>
-
-        <Modal.Body>
-          <Form onSubmit={handleSubmit}>
-            <Form.Select
-              name='manufacturer_id'
-              value={form.manufacturer_id}
-              onChange={handleChange}
-            >
-              <option value=''>Select manufacturer</option>
-              {manufacturers.map((m) => (
-                <option key={m.id} value={m.id}>
-                  {m.name}
-                </option>
-              ))}
-            </Form.Select>
-
-            <Form.Control
-              name='name'
-              value={form.name}
-              placeholder='Car name'
-              onChange={handleChange}
-              className='mt-2'
-            />
-
-            <Form.Control
-              name='year'
-              value={form.year}
-              placeholder='Year'
-              onChange={handleChange}
-              className='mt-2'
-            />
-
-            <Form.Control
-              name='class_letter'
-              value={form.class_letter}
-              placeholder='Class (S1, A...)'
-              onChange={handleChange}
-              className='mt-2'
-            />
-
-            <Form.Control
-              name='class_index'
-              value={form.class_index}
-              placeholder='PI'
-              onChange={handleChange}
-              className='mt-2'
-            />
-
-            <Form.Control
-              name='tuning'
-              value={form.tuning}
-              placeholder='Tuning'
-              onChange={handleChange}
-              className='mt-2'
-            />
-
-            <Form.Control
-              name='power'
-              value={form.power}
-              placeholder='Power'
-              onChange={handleChange}
-              className='mt-2'
-            />
-
-            <Form.Control
-              name='weight'
-              value={form.weight}
-              placeholder='Weight'
-              onChange={handleChange}
-              className='mt-2'
-            />
-
-            <Form.Control
-              name='front_weight_distribution'
-              value={form.front_weight_distribution}
-              placeholder='Front weight %'
-              onChange={handleChange}
-              className='mt-2'
-            />
-
-            <Form.Control
-              name='displacement'
-              value={form.displacement}
-              placeholder='Engine size'
-              onChange={handleChange}
-              className='mt-2'
-            />
-
-            <Button type='submit' className='mt-3' variant='success'>
-              {editingCar ? 'Update' : 'Save'}
-            </Button>
-          </Form>
-        </Modal.Body>
-      </Modal> */}
+          <CarsTable
+            cars={cars}
+            onEdit={handleEdit}
+            onDelete={(car) => {
+              setCarToDelete(car);
+              setShowDeleteModal(true);
+            }}
+          />
+        </Card.Body>
+      </Card>
 
       <CarFormModal
         show={show}
