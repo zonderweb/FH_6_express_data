@@ -3,8 +3,9 @@ import { useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
-import Table from 'react-bootstrap/Table';
 import ConfirmModal from '../../components/common/ConfirmModal/ConfirmModal';
+import CarFormModal from '../../components/сars/CarFormModal/CarFormModal';
+import CarsTable from '../../components/сars/CarsTable/CarsTable';
 import './CarsPage.scss';
 
 import { createCar, deleteCar, getCars, updateCar } from '../../services/carsApi';
@@ -123,59 +124,17 @@ function CarsPage() {
         Add Car
       </Button>
 
-      <Table className='mt-3'>
-        <thead>
-          <tr>
-            <th>Brand</th>
-            <th>Name</th>
-            <th>Year</th>
-            <th>Class</th>
-            <th>PI</th>
-            <th>Power</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {cars.map((car) => (
-            <tr key={car.id}>
-              <td>{car.manufacturer_name}</td>
-              <td>{car.name}</td>
-              <td>{car.year}</td>
-              <td>
-                {car.class_letter} {car.class_index}
-              </td>
-              <td>{car.tuning}</td>
-              <td>{car.power}</td>
-              <td>
-                <Button
-                  variant='success'
-                  size='sm'
-                  className='me-3'
-                  onClick={() => handleEdit(car)}
-                >
-                  <SquarePen size={18} className='me-2' />
-                  Edit
-                </Button>
-
-                <Button
-                  variant='danger'
-                  size='sm'
-                  onClick={() => {
-                    setCarToDelete(car);
-                    setShowDeleteModal(true);
-                  }}
-                >
-                  <DatabaseZap size={18} className='me-2' />
-                  Delete
-                </Button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </Table>
+      <CarsTable
+        cars={cars}
+        onEdit={handleEdit}
+        onDelete={(car) => {
+          setCarToDelete(car);
+          setShowDeleteModal(true);
+        }}
+      />
 
       {/* # 4. Modal форма додавання */}
-      <Modal show={show} onHide={() => setShow(false)} centered>
+      {/* <Modal show={show} onHide={() => setShow(false)} centered>
         <Modal.Header closeButton>
           <Modal.Title>{editingCar ? 'Edit Car' : 'Add Car'}</Modal.Title>
         </Modal.Header>
@@ -272,9 +231,34 @@ function CarsPage() {
             </Button>
           </Form>
         </Modal.Body>
-      </Modal>
-      {/* Підтвердження видалення */}
+      </Modal> */}
 
+      <CarFormModal
+        show={show}
+        onClose={() => {
+          setShow(false);
+          setEditingCar(null);
+          setForm({
+            manufacturer_id: '',
+            name: '',
+            year: '',
+            class_letter: '',
+            class_index: '',
+            tuning: '',
+            power: '',
+            weight: '',
+            front_weight_distribution: '',
+            displacement: '',
+          });
+        }}
+        onSubmit={handleSubmit}
+        form={form}
+        handleChange={handleChange}
+        manufacturers={manufacturers}
+        editingCar={editingCar}
+      />
+
+      {/* Підтвердження видалення */}
       <ConfirmModal
         show={showDeleteModal}
         title='Видалення автомобіля'
