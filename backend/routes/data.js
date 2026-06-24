@@ -9,7 +9,7 @@ router.get('/', async function (req, res, next) {
   try {
     const result = await sheets.spreadsheets.values.get({
       spreadsheetId: process.env.SPREADSHEET_ID,
-      range: 'FH_Drift_cars_data!A:Y',
+      range: 'FH_Drift_cars_data!A:AF',
     });
 
     const rows = result.data.values;

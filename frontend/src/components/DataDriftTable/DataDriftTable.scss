@@ -12,15 +12,21 @@ table.data-table {
 
   thead {
     tr {
-      background-color: #efeefd;
+      background-color: #f8fbfc;
+
+      th {
+        color: #708a7f !important;
+      }
     }
   }
 
   th,
   td {
     padding: 8px;
-    border: 1px solid #ddd;
+    border-bottom: 1px solid #f1f1f3;
     text-align: center;
+    color: #626d7d !important;
+    font-weight: 550;
   }
 
   th:first-child,
@@ -31,14 +37,31 @@ table.data-table {
     min-width: 200px;
     text-align-last: left;
     padding-left: 15px;
-    background-color: #eefcfd;
+    background-color: #e6f1f4;
   }
 
   td:first-child {
-    font-weight: 550;
+    font-weight: 600;
+    color: #1e2633 !important;
   }
 
   th:first-child {
-    background-color: #dad8f9;
+    background-color: #e6f1f4;
+    color: #707b8b !important;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+
+  tbody {
+    tr:hover {
+      td {
+        background-color: #f9fafb;
+      }
+
+      td:hover {
+        background-color: #e5f1f4;
+        cursor: pointer;
+      }
+    }
   }
 }

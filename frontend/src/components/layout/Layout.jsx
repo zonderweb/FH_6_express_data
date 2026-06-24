@@ -6,10 +6,9 @@ function Layout() {
   return (
     <>
       <MainNavbar />
-
-      <Container className="mt-4">
+      <div className='content-block mt-4 mx-4'>
         <Outlet />
-      </Container>
+      </div>
     </>
   );
 }
