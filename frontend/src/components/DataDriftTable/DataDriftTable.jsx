@@ -24,13 +24,13 @@ function DataDriftTable() {
 
   return (
     <>
-      <h1 className='h5 mb-4 page-title'>
+      <h1 className='h6 mb-4 page-title'>
         <span>DATA</span> Drift Google Table
       </h1>
 
       <Card>
         <Card.Body>
-          <h2 className='h4 page-title'>
+          <h2 className='h5 page-title'>
             Зведена таблиця <span>Drift заїздів</span>
           </h2>
         </Card.Body>
