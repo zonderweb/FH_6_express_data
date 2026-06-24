@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import Card from 'react-bootstrap/Card';
+import { formatValue } from '../../utils/formatValue';
 import './DataDriftTable.scss';
 
 function DataDriftTable() {
@@ -47,7 +48,7 @@ function DataDriftTable() {
               {rows.map((row, rowIndex) => (
                 <tr key={rowIndex}>
                   {columns.map((column) => (
-                    <td key={column}>{row[column] || '-'}</td>
+                    <td key={column}>{formatValue(row[column])}</td>
                   ))}
                 </tr>
               ))}
