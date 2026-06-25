@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import Card from 'react-bootstrap/Card';
+import Container from 'react-bootstrap/Container';
 import ConfirmModal from '../../components/common/ConfirmModal/ConfirmModal';
 import ManufacturerForm from '../../components/manufacturers/ManufacturerForm/ManufacturerForm';
 import ManufacturerTable from '../../components/manufacturers/ManufacturerTable/ManufacturerTable';
@@ -69,9 +70,16 @@ export default function ManufacturersPage() {
   };
 
   return (
-    <>
-      <h1 className='mb-4 h2 ms-2'>Виробники авто</h1>
+    <Container>
+      <h1 className='h6 mb-4 page-title'>
+        <span>Data</span> Виробники авто
+      </h1>
       <Card>
+        <Card.Header>
+          <h2 className='h5 page-title'>
+            Зведена таблиця <span>Виробників Авто</span>
+          </h2>
+        </Card.Header>
         <Card.Body>
           <ManufacturerForm
             name={name}
@@ -83,27 +91,25 @@ export default function ManufacturersPage() {
               setName('');
             }}
           />
-
-          <ManufacturerTable
-            manufacturers={manufacturers}
-            onEdit={handleEdit}
-            onDelete={handleDelete}
-          />
-
-          <ConfirmModal
-            show={showDeleteModal}
-            title='Видалення виробника'
-            message={
-              manufacturerToDelete ? `Видалити виробника "${manufacturerToDelete.name}"?` : ''
-            }
-            onConfirm={confirmDelete}
-            onClose={() => {
-              setShowDeleteModal(false);
-              setManufacturerToDelete(null);
-            }}
-          />
         </Card.Body>
+
+        <ManufacturerTable
+          manufacturers={manufacturers}
+          onEdit={handleEdit}
+          onDelete={handleDelete}
+        />
+
+        <ConfirmModal
+          show={showDeleteModal}
+          title='Видалення виробника'
+          message={manufacturerToDelete ? `Видалити виробника "${manufacturerToDelete.name}"?` : ''}
+          onConfirm={confirmDelete}
+          onClose={() => {
+            setShowDeleteModal(false);
+            setManufacturerToDelete(null);
+          }}
+        />
       </Card>
-    </>
+    </Container>
   );
 }

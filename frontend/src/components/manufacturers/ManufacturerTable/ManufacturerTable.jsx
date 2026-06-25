@@ -1,14 +1,14 @@
-import { DatabaseZap, SquarePen } from 'lucide-react';
+import { SquarePen, Trash2 } from 'lucide-react';
 import Button from 'react-bootstrap/Button';
 import Table from 'react-bootstrap/Table';
 import './ManufacturerTable.scss';
 
 function ManufacturerTable({ manufacturers, onEdit, onDelete }) {
   return (
-    <Table hover bordered className='align-middle manufacturer-table'>
+    <Table hover className='align-middle manufacturer-table'>
       <thead>
-        <tr className='table-active'>
-          <th>ID</th>
+        <tr>
+          <th className='text-center'>ID</th>
           <th>Name</th>
           <th>Actions</th>
         </tr>
@@ -17,7 +17,7 @@ function ManufacturerTable({ manufacturers, onEdit, onDelete }) {
       <tbody>
         {manufacturers.map((manufacturer) => (
           <tr key={manufacturer.id}>
-            <td>{manufacturer.id}</td>
+            <td className='text-center'>{manufacturer.id}</td>
             <td>{manufacturer.name}</td>
             <td>
               <Button
@@ -36,7 +36,7 @@ function ManufacturerTable({ manufacturers, onEdit, onDelete }) {
                 title='Видалити'
                 onClick={() => onDelete(manufacturer)}
               >
-                <DatabaseZap size={18} />
+                <Trash2 size={18} />
               </Button>
             </td>
           </tr>

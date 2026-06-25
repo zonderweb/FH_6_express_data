@@ -8,7 +8,7 @@ import './ManufacturerForm.scss';
 function ManufacturerForm({ name, editing, onNameChange, onSubmit, onCancel }) {
   return (
     <Form onSubmit={onSubmit}>
-      <Form.Group className='mb-3'>
+      <Form.Group>
         <Row>
           <Col lg={6} md={6} className='pe-2'>
             <Form.Control
