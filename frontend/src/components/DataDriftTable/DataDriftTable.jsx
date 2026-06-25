@@ -29,11 +29,11 @@ function DataDriftTable() {
       </h1>
 
       <Card>
-        <Card.Body>
+        <Card.Header>
           <h2 className='h5 page-title'>
             Зведена таблиця <span>Drift заїздів</span>
           </h2>
-        </Card.Body>
+        </Card.Header>
         <div className='table-wrapper'>
           <table className='data-table'>
             <thead>
