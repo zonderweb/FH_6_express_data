@@ -16,11 +16,11 @@ function ManufacturerForm({ name, editing, onNameChange, onSubmit, onCancel }) {
               value={name}
               onChange={(e) => onNameChange(e.target.value)}
               placeholder='Назва виробника'
-              className='mb-3'
+              className='mb-3 mb-md-0'
             />
           </Col>
           <Col lg={6} md={6}>
-            <Button variant='primary' type='submit' className='me-3 fw-medium'>
+            <Button variant='info' type='submit' className='me-3 fw-medium'>
               <Plus className='me-2' size={18} />
               {editing ? 'Оновити' : 'Додати'}
             </Button>

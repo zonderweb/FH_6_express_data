@@ -7,8 +7,8 @@ import './CarFormModal.scss';
 function CarFormModal({ show, onClose, onSubmit, form, handleChange, manufacturers, editingCar }) {
   return (
     <Modal show={show} onHide={onClose} centered>
-      <Modal.Header closeButton>
-        <Modal.Title>{editingCar ? 'Edit Car' : 'Add Car'}</Modal.Title>
+      <Modal.Header className='banner-info' closeButton>
+        <Modal.Title>{editingCar ? 'Форма редагування авто' : 'Форма додавання авто'}</Modal.Title>
       </Modal.Header>
 
       <Modal.Body>
@@ -94,7 +94,7 @@ function CarFormModal({ show, onClose, onSubmit, form, handleChange, manufacture
             className='mt-2'
           />
 
-          <Button type='submit' className='mt-3' variant='success'>
+          <Button type='submit' className='mt-3 w-100' variant='success'>
             <CloudCheck className='me-2' size={22} />
             {editingCar ? 'Update' : 'Save'}
           </Button>

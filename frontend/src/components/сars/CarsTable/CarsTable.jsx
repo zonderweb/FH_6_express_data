@@ -1,14 +1,14 @@
-import { DatabaseZap, SquarePen } from 'lucide-react';
+import { SquarePen, Trash2 } from 'lucide-react';
 import Button from 'react-bootstrap/Button';
 import Table from 'react-bootstrap/Table';
 import './CarsTable.scss';
 
 function CarsTable({ cars, onEdit, onDelete }) {
   return (
-    <Table hover className='mt-3 сars-table align-middle'>
-      <thead className='car-table-header'>
+    <Table hover className='сars-table align-middle mb-0'>
+      <thead>
         <tr>
-          <th>Year</th>
+          <th className='text-center'>Year</th>
           <th>Car</th>
           <th>Class</th>
           <th>T.Code</th>
@@ -20,7 +20,7 @@ function CarsTable({ cars, onEdit, onDelete }) {
       <tbody>
         {cars.map((car) => (
           <tr key={car.id}>
-            <td>{car.year}</td>
+            <td className='text-center'>{car.year}</td>
             <td>
               <div className='car-mnf'>{car.manufacturer_name}</div> {car.name}
             </td>
@@ -33,13 +33,11 @@ function CarsTable({ cars, onEdit, onDelete }) {
             <td>{car.front_weight_distribution}%</td>
             <td>
               <Button variant='success' size='sm' className='me-3' onClick={() => onEdit(car)}>
-                <SquarePen size={18} className='me-2' />
-                Edit
+                <SquarePen size={18} />
               </Button>
 
               <Button variant='danger' size='sm' onClick={() => onDelete(car)}>
-                <DatabaseZap size={18} className='me-2' />
-                Delete
+                <Trash2 size={18} />
               </Button>
             </td>
           </tr>

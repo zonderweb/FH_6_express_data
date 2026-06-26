@@ -5,7 +5,7 @@ import './ManufacturerTable.scss';
 
 function ManufacturerTable({ manufacturers, onEdit, onDelete }) {
   return (
-    <Table hover className='align-middle manufacturer-table'>
+    <Table hover className='align-middle manufacturer-table mb-0'>
       <thead>
         <tr>
           <th className='text-center'>ID</th>

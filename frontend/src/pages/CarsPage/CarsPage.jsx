@@ -1,7 +1,8 @@
-import { Plus } from 'lucide-react';
+import { CarFront } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+import Container from 'react-bootstrap/Container';
 import ConfirmModal from '../../components/common/ConfirmModal/ConfirmModal';
 import CarFormModal from '../../components/сars/CarFormModal/CarFormModal';
 import CarsTable from '../../components/сars/CarsTable/CarsTable';
@@ -115,24 +116,31 @@ function CarsPage() {
   };
 
   return (
-    <>
-      <h1 className='mb-4 h2'>Page of Drift Cars</h1>
+    <Container>
+      <h1 className='mb-4 h6 page-title'>
+        <span>Data</span> Drift Cars
+      </h1>
       <Card>
-        <Card.Body>
-          <Button onClick={() => setShow(true)}>
-            <Plus className='me-2' />
-            Add Car
-          </Button>
+        <Card.Header>
+          <div className='d-flex justify-content-between align-items-center'>
+            <h2 className='h5 page-title'>
+              Зведена таблиця <span>Drift Cars</span>
+            </h2>
+            <Button variant='info' onClick={() => setShow(true)}>
+              <CarFront className='me-2' />
+              Add Car
+            </Button>
+          </div>
+        </Card.Header>
 
-          <CarsTable
-            cars={cars}
-            onEdit={handleEdit}
-            onDelete={(car) => {
-              setCarToDelete(car);
-              setShowDeleteModal(true);
-            }}
-          />
-        </Card.Body>
+        <CarsTable
+          cars={cars}
+          onEdit={handleEdit}
+          onDelete={(car) => {
+            setCarToDelete(car);
+            setShowDeleteModal(true);
+          }}
+        />
       </Card>
 
       <CarFormModal
@@ -168,7 +176,7 @@ function CarsPage() {
         onConfirm={handleConfirmDelete}
         onClose={closeDeleteModal}
       />
-    </>
+    </Container>
   );
 }
 
