@@ -13,6 +13,8 @@ function CarsTable({ cars, onEdit, onDelete }) {
           <th>Class</th>
           <th>T.Code</th>
           <th>Power</th>
+          <th>Weight</th>
+          <th>Displacement</th>
           <th>FWD</th>
           <th>Actions</th>
         </tr>
@@ -29,7 +31,9 @@ function CarsTable({ cars, onEdit, onDelete }) {
               {car.class_letter} {car.class_index}
             </td>
             <td>{car.tuning}</td>
-            <td>{car.power} к.Вт</td>
+            <td>{car.power} кВт</td>
+            <td>{car.weight} кг</td>
+            <td>{car.displacement} L</td>
             <td>{car.front_weight_distribution}%</td>
             <td>
               <Button variant='success' size='sm' className='me-3' onClick={() => onEdit(car)}>

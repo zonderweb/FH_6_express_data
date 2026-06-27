@@ -116,10 +116,12 @@ function CarsPage() {
   };
 
   return (
-    <Container>
-      <h1 className='mb-4 h6 page-title'>
-        <span>Data</span> Drift Cars
-      </h1>
+    <>
+      <Container>
+        <h1 className='mb-4 h6 page-title'>
+          <span>Data</span> Drift Cars
+        </h1>
+      </Container>
       <Card>
         <Card.Header>
           <div className='d-flex justify-content-between align-items-center'>
@@ -176,7 +178,7 @@ function CarsPage() {
         onConfirm={handleConfirmDelete}
         onClose={closeDeleteModal}
       />
-    </Container>
+    </>
   );
 }
 
