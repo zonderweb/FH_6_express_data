@@ -123,7 +123,7 @@ function CarsPage() {
         </h1>
       </Container>
       <Card>
-        <Card.Header>
+        <Card.Header className='mb-5'>
           <div className='d-flex justify-content-between align-items-center'>
             <h2 className='h5 page-title'>
               Зведена таблиця <span>Drift Cars</span>

@@ -1,14 +1,16 @@
-import { SquarePen, Trash2 } from 'lucide-react';
+import { Trash2 } from 'lucide-react';
 import Button from 'react-bootstrap/Button';
 import Table from 'react-bootstrap/Table';
 import './ManufacturerTable.scss';
 
 function ManufacturerTable({ manufacturers, onEdit, onDelete }) {
   return (
-    <Table hover className='align-middle manufacturer-table mb-0'>
+    <Table hover responsive className='align-middle manufacturer-table mb-0'>
       <thead>
         <tr>
-          <th className='text-center'>ID</th>
+          <th className='text-center' style={{ width: '5%' }}>
+            ID
+          </th>
           <th>Name</th>
           <th>Actions</th>
         </tr>
@@ -17,17 +19,16 @@ function ManufacturerTable({ manufacturers, onEdit, onDelete }) {
       <tbody>
         {manufacturers.map((manufacturer) => (
           <tr key={manufacturer.id}>
-            <td className='text-center'>{manufacturer.id}</td>
+            <td className='text-center accent-box border-r'>{manufacturer.id}</td>
             <td>{manufacturer.name}</td>
             <td>
               <Button
-                variant='success'
+                variant='primary'
                 size='sm'
-                className='me-3'
+                className='me-1'
                 onClick={() => onEdit(manufacturer)}
               >
-                <SquarePen size={18} className='me-2' />
-                Редагувати
+                Edit
               </Button>
 
               <Button

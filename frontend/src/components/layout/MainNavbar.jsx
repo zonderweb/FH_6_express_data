@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 
 function MainNavbar() {
   return (
-    <Navbar bg='primary' variant='dark' expand='lg'>
+    <Navbar bg='light' data-bs-theme='light' expand='lg'>
       <Container>
         <Navbar.Brand as={NavLink} to='/'>
           Forza Stats
