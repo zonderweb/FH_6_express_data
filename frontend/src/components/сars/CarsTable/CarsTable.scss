@@ -2,3 +2,20 @@
   color: #8b5e82;
   font-weight: 600;
 }
+
+.car-class {
+  padding: 0.25rem 0.5rem;
+  display: inline-block;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.car-class--s1 {
+  background-color: $secondary;
+  color: #fff;
+  border: 1px solid $secondary;
+}
+
+.car-class--b_violet {
+  border: 1px solid $secondary;
+}

@@ -28,7 +28,25 @@ function CarsTable({ cars, onEdit, onDelete }) {
             </td>
 
             <td>
-              {car.class_letter} {car.class_index}
+              <span
+                className={
+                  String(car.class_letter).toLowerCase() === 's1'
+                    ? 'car-class car-class--s1'
+                    : 'car-class'
+                }
+              >
+                {car.class_letter}
+              </span>
+
+              <span
+                className={
+                  String(car.class_letter).toLowerCase() === 's1'
+                    ? 'car-class car-class--b_violet'
+                    : 'car-class'
+                }
+              >
+                {car.class_index}
+              </span>
             </td>
             <td>{car.tuning}</td>
             <td>{car.power} кВт</td>
@@ -36,7 +54,7 @@ function CarsTable({ cars, onEdit, onDelete }) {
             <td>{car.displacement} L</td>
             <td>{car.front_weight_distribution}%</td>
             <td>
-              <Button variant='primary' size='sm' className='me-3' onClick={() => onEdit(car)}>
+              <Button variant='primary' size='sm' className='me-1' onClick={() => onEdit(car)}>
                 <SquarePen size={18} />
               </Button>
 

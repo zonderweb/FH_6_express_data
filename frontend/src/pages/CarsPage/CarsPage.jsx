@@ -1,5 +1,5 @@
 import { CarFront } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
@@ -10,43 +10,45 @@ import { createCar, deleteCar, getCars, updateCar } from '../../services/carsApi
 import { getManufacturers } from '../../services/manufacturersApi';
 import './CarsPage.scss';
 
+const emptyCarForm = {
+  manufacturer_id: '',
+  name: '',
+  year: '',
+  class_letter: '',
+  class_index: '',
+  tuning: '',
+  power: '',
+  weight: '',
+  front_weight_distribution: '',
+  displacement: '',
+};
+
 function CarsPage() {
   const [cars, setCars] = useState([]);
   const [manufacturers, setManufacturers] = useState([]);
 
   const [show, setShow] = useState(false);
 
-  const [form, setForm] = useState({
-    manufacturer_id: '',
-    name: '',
-    year: '',
-    class_letter: '',
-    class_index: '',
-    tuning: '',
-    power: '',
-    weight: '',
-    front_weight_distribution: '',
-    displacement: '',
-  });
+  const [form, setForm] = useState(emptyCarForm);
 
   const [editingCar, setEditingCar] = useState(null);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [carToDelete, setCarToDelete] = useState(null);
 
-  const loadCars = async () => {
+  const loadCars = useCallback(async () => {
     const res = await getCars();
     setCars(res.data);
-  };
+  }, []);
 
-  const loadManufacturers = async () => {
+  const loadManufacturers = useCallback(async () => {
     const res = await getManufacturers();
     setManufacturers(res.data);
-  };
+  }, []);
 
   useEffect(() => {
     loadCars();
     loadManufacturers();
-  }, []);
+  }, [loadCars, loadManufacturers]);
 
   const handleChange = (e) => {
     setForm({
@@ -60,6 +62,7 @@ function CarsPage() {
 
     try {
       if (editingCar) {
+        S1;
         await updateCar(editingCar.id, form);
       } else {
         await createCar(form);
@@ -68,10 +71,17 @@ function CarsPage() {
       await loadCars();
 
       setEditingCar(null);
+      setForm(emptyCarForm);
       setShow(false);
     } catch (error) {
       console.error(error);
     }
+  };
+
+  const handleAddCar = () => {
+    setEditingCar(null);
+    setForm(emptyCarForm);
+    setShow(true);
   };
 
   const handleEdit = (car) => {
@@ -128,7 +138,7 @@ function CarsPage() {
             <h2 className='h5 page-title'>
               Зведена таблиця <span>Drift Cars</span>
             </h2>
-            <Button variant='info' onClick={() => setShow(true)}>
+            <Button variant='info' onClick={handleAddCar}>
               <CarFront className='me-2' />
               Add Car
             </Button>
@@ -150,18 +160,7 @@ function CarsPage() {
         onClose={() => {
           setShow(false);
           setEditingCar(null);
-          setForm({
-            manufacturer_id: '',
-            name: '',
-            year: '',
-            class_letter: '',
-            class_index: '',
-            tuning: '',
-            power: '',
-            weight: '',
-            front_weight_distribution: '',
-            displacement: '',
-          });
+          setForm(emptyCarForm);
         }}
         onSubmit={handleSubmit}
         form={form}
